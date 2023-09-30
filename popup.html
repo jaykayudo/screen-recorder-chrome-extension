@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
+    <title>Screen Recorder</title>
+</head>
+<body>
+    <div class="popup-container">
+        <div class="header">
+            <h3><img src="icon.png" alt="Icon">&nbsp; Help Me Out</h3>
+            <div class="tools">
+                <button type="button" class="scr-nav-button"><i class="fas fa-cog"></i></button>
+                <button type="button" class="scr-nav-button"><i class="far fa-times-circle"></i></button>
+            </div>
+        </div>
+        <p class="help-text">
+            This extension helps you record and share help videos with ease.
+        </p>
+        <div class="functions-box">
+            <div class="functions">
+                <span><i class="fas fa-desktop"></i></span>
+                <span>Full Screen</span>
+            </div>
+            <div class="functions">
+                <span><i class="far fa-clone"></i></span>
+                <span>Current Tab</span>
+            </div>
+        </div>
+        <div class="media-toggles">
+            <div class="toggle-box">
+                <p><i class="fas fa-video"></i>&nbsp;&nbsp;Camera</p>
+                <span></span>
+                <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+            <div class="toggle-box">
+                <p><i class="fas fa-microphone">&nbsp;&nbsp;</i>Audio</p>
+                <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+        </div>
+        <div class="btn-group">
+            <button class="record-btn-block" id="mainStartButton">Start Recording</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
