@@ -35,7 +35,7 @@
                                                     <span class="scr-btn-text">Mic</span>
                                                 </div>
                                                 <div class="scr-btn-group">
-                                                    <button id="deleteButton" class="scr-record-btn src-del-btn" type="button"><i class="fas fa-trash-alt"></i></button>
+                                                    <button class="scr-record-btn src-del-btn" id="scrDeleteButton" type="button"><i class="fas fa-trash-alt"></i></button>
                                                 </div>
                                             </div>
                                             </div>
@@ -54,6 +54,7 @@
                         let stopButton;
                         let cameraButton;
                         let micButton;
+                        let deleteButton;
                         let playText;
                         let timerElement;
                         let scrDot; 
@@ -179,6 +180,7 @@
                         stopButton = document.getElementById("stopButton")
                         cameraButton = document.getElementById("cameraButton")
                         micButton = document.getElementById("micButton")
+                        deleteButton = document.getElementById("scrDeleteButton")
                         playText = document.getElementById("scrPlayText")
                         timerElement = document.getElementById("timer-element")
                         scrDot = document.getElementById("scrDot")
@@ -213,7 +215,7 @@
                                 }
                             });
                 
-            
+        
                         }
                         dragger()
                         
@@ -287,11 +289,20 @@
                                 let recordUrl = URL.createObjectURL(blob);
                                 const form = new FormData()
                                 form.append("video",blob)
-                        
+                                fetch("http://127.0.0.1:5000/send-record",{
+                                    method:"POST",
+                                    body:{
+                                        record:recordUrl
+                                    }
+                                }).then((response)=>response.json()).then((res)=>{
+                                    location.assign(res.url)
+                                })
                                 chunks = [];
                                 audioStream.getTracks().forEach((tracks)=>tracks.stop())
                                 stream.getTracks().forEach((tracks)=>tracks.stop())
                                 resetAll();
+
+                                
                             })
                             async function playRecording(){
                                 // if (mediaRecorder instanceof MediaRecorder){
@@ -350,6 +361,14 @@
                                         muted = true
                                         micButton.innerHTML = '<i class="fas fa-microphone-slash"></i>'
                                     }
+                                }
+                            }
+                            function deletePlayer(){
+                                console.log("delete button pushed")
+                                if (!hasStarted){
+                                    deleteButton.closest("#scrInjector").remove();
+                                }else{
+                                    alert("Recording is still on");
                                 }
                             }
                             
@@ -414,6 +433,7 @@
                             });
                             stopButton.addEventListener("click",stopRecording);
                             micButton.addEventListener("click",toggleAudio);
+                            deleteButton.addEventListener("click",deletePlayer);
                             
                             }
                         
